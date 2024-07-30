@@ -1,6 +1,26 @@
-version: '3.8'
+version: "3"
 services:
-  dcnginx:
-    image: nginx:1-alpine
+  web:
+    image: nginx:latest
+    restart: always
+    container_name: ionos_nginx
     ports:
-      - 8089:80
+      - "8000:80"
+    networks:
+      - ionos_network
+    volumes:
+      - ionos_nginx_vol:/usr/share/nginx/html
+
+volumes:
+  ionos_nginx_vol:
+    #    source: ionos_nginx_vol
+    #    target: /usr/share/nginx/html
+
+networks:
+  mynet:
+    name: ionos_network
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 192.168.1.0/24
+        gateway: 192.168.1.1
