@@ -13,12 +13,12 @@ services:
 
 volumes:
   ionos_nginx_vol:
-    #    source: ionos_nginx_vol
-    #    target: /usr/share/nginx/html
+    source: ionos_nginx_vol
+    target: /usr/share/nginx/html
 
 networks:
-  mynet:
-    name: ionos_network
+  ionos_network:
+    name: ionos_net
     driver: bridge
     ipam:
       config:
