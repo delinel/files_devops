@@ -5,10 +5,10 @@ FROM maven:3-openjdk-17
 WORKDIR /myfront-app
 
 # Copier le snaphot.jar dans le repertoire de travail et le renommer en code-frontend.jar
-COPY /projects/github/depot/mkutano-frontend/  /myfront-app
+ADD /projects/github/depot/mkutano-frontend/  /myfront-app/frontend
 
 # Exposer le port de l'application
 EXPOSE 8080
 
 # Démarrer l'application
-ENTRYPOINT ["java", "-jar", "/myfront-app/target/code-frontend-1.0.0-SNAPSHOT-native-image-source-jar/code-frontend-1.0.0-SNAPSHOT-runner.jar"]
+ENTRYPOINT ["java", "-jar", "/myfront-app/frontend/target/code-frontend-1.0.0-SNAPSHOT-native-image-source-jar/code-frontend-1.0.0-SNAPSHOT-runner.jar"]
