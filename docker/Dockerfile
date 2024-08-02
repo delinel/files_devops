@@ -5,7 +5,7 @@ FROM maven:3-openjdk-17
 WORKDIR /myfront-app
 
 # Copier le snaphot.jar dans le repertoire de travail et le renommer en code-frontend.jar
-COPY -r /projects/github/depot/mkutano-frontend/*  /myfront-app
+COPY /projects/github/depot/mkutano-frontend/  /myfront-app
 
 # Exposer le port de l'application
 EXPOSE 8080
