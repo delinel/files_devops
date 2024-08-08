@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   frontend-quarkus:
-    image: nginx:latest
+    image: nginx_proxy_quarkus:v24.8.1
     restart: always
     container_name: nginx-frt
     ports:
@@ -17,7 +17,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      ionos_network_ip:
+      ionos_network_frt:
         ipv4_address: 192.168.1.10
 
 networks:
