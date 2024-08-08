@@ -17,20 +17,21 @@ services:
     #source: ionos_nginx_vol
     #target: /usr/share/nginx/html
 
-# networks:
-#   ionos_network_ip:
-#     name: ionos_net_ip
-#     driver: bridge
-#     ipam:
-#       config:
-#       - subnet: 192.168.30.0/24
-#         gateway: 192.168.30.1
-
 networks:
-  ionos_network_frt:
-    name: ionos_net_frt
+  ionos_network_ip:
+    name: ionos_net_ip
     driver: bridge
     ipam:
       config:
-      - subnet: 192.168.1.0/24
-        gateway: 192.168.1.1
+      - subnet: 192.168.30.0/24
+        gateway: 192.168.30.1
+
+## Network pour proxy nginx
+# networks:
+#   ionos_network_frt:
+#     name: ionos_net_frt
+#     driver: bridge
+#     ipam:
+#       config:
+#       - subnet: 192.168.1.0/24
+#         gateway: 192.168.1.1
