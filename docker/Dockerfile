@@ -4,8 +4,13 @@ FROM maven:3-openjdk-17
 # Répertoire de travail
 WORKDIR /myfront-app
 
-# Copier le snaphot.jar dans le repertoire de travail et le renommer en code-frontend.jar
-#COPY /projects/github/depot/mkutano-frontend/  /myfront-app/frontend
+# Define and create user app
+ARG APP_USER=appdev
+ARG SHELL_USER=/bin/bash
+RUN useradd -rm -d /home/${APP_USER} -s ${SHELL_USER} -G wheel -u 1001 ${APP_USER}
+
+# Add the project in the folder
+USER ${APP_USER}
 ADD frontend-devops  /myfront-app
 
 RUN mvn package
