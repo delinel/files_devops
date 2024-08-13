@@ -1,6 +1,10 @@
 # Mon image de base
 FROM maven:3-openjdk-17
 
+# Labels
+LABEL version=v24.8.3
+LABEL owner=delinel
+
 # Répertoire de travail
 WORKDIR /myfront-app
 
