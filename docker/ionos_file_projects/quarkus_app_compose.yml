@@ -1,37 +1,35 @@
 version: "3.8"
 services:
   quarkus_app:
-    image: quarkus:v24.8.2
+    #image: delinel/ionos_devops:quarkus_app_v24.8.3 ==> image dans le repo en ligne
+    image: quarkus:v24.8.3
     restart: always
-    container_name: quarkus_appli
+      container_name: quarkus_appli
     ports:
+      # - "8081-8083:8080"  # les appli seront exposés successivement sur les ports 8001, 8002 et 8003 (pour les replicas)
       - "8080:8080"
     networks:
-      ionos_network_ip:
-        ipv4_address: 192.168.1.10
-  #  volumes:
-  #    - ionos_nginx_vol:/usr/share/nginx/html
+      ionos_network_appli:
+        #ipv4_address: 10.0.1.10
+    deploy:
+      # mode: replicated  #ajout des replicas
+      # replicas: 3       #ajout des replicas
+      resources:
+        limits:         # ressources reservees par appli
+          cpus: '0.05'
+          memory: 150M
+        reservations:   # ressources limites à utiliser par l'appli
+          cpus: '0.01'
+          memory: 100M
+    volumes:
+      - /docker/volumes/quarkus_app/applications.properties:/myfront-app/target/classes/application.properties # fichier aaplications.properties
 
-#volumes:
-#  ionos_nginx_vol:
-    #source: ionos_nginx_vol
-    #target: /usr/share/nginx/html
-
+# Sous reseau reservé aux applis: 10.0.1.0/24
 networks:
-  ionos_network_ip:
-    name: ionos_net_ip
+  ionos_network_appli:
+    name: ionos_net_appli
     driver: bridge
     ipam:
       config:
-      - subnet: 192.168.30.0/24
-        gateway: 192.168.30.1
-
-## Network pour proxy nginx
-# networks:
-#   ionos_network_frt:
-#     name: ionos_net_frt
-#     driver: bridge
-#     ipam:
-#       config:
-#       - subnet: 192.168.1.0/24
-#         gateway: 192.168.1.1
+      - subnet: 10.0.1.0/24
+        gateway: 10.0.1.1
