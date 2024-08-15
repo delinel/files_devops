@@ -4,7 +4,7 @@ services:
     #image: delinel/ionos_devops:quarkus_app_v24.8.3 ==> image dans le repo en ligne
     image: quarkus:v24.8.3
     restart: always
-      container_name: quarkus_appli
+    container_name: quarkus_appli
     ports:
       # - "8081-8083:8080"  # les appli seront exposés successivement sur les ports 8001, 8002 et 8003 (pour les replicas)
       - "8080:8080"
