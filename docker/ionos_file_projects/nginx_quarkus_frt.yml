@@ -20,8 +20,8 @@ services:
       ionos_network_appli:
 #        ipv4_address: 10.0.1.9
     volumes:
-      - /docker/volumes/nginx-frt/conf.d:/etc/nginx/conf.d
-      - logs:/var/log/nginx
+      - /docker/volumes/nginx-frt/conf.d:/etc/nginx/conf.d #copie le contenu phy vers le conteneur
+      - logs:/var/log/nginx # copie des logs du conteneur vers la machine physique
 
 # Sous reseau reservé aux applis: 10.0.1.0/24
 networks:
